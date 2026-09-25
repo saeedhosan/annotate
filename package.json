@@ -1,0 +1,119 @@
+{
+    "name": "annotate",
+    "version": "0.0.0",
+    "private": false,
+    "type": "module",
+    "main": "dist/main/main/main.js",
+    "author": "Saeed Hosan <saeedhosansh@gmail.com>",
+    "description": "Screen annotation over any screen with simple drawing and convenient shortcuts.",
+    "homepage": "https://github.com/saeedhosan/annotate",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/saeedhosan/annotate.git"
+    },
+    "license": "MIT",
+    "scripts": {
+        "dev": "concurrently -k -n renderer,main,app \"vite build --watch\" \"tsc -p tsconfig.main.json --watch\" \"wait-on dist/main/main/main.js dist/renderer/index.html && electronmon .\"",
+        "web:dev": "vite",
+        "web:build": "vite build",
+        "web:serve": "vite preview",
+        "build": "tsc -p tsconfig.main.json && bun run web:build",
+        "build:icon": "node scripts/make-icon.mjs",
+        "start": "electron .",
+        "test": "bun run test:tsc && bun run test:lint && bun run test:unit && bun run test:e2e",
+        "test:tsc": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.main.json",
+        "test:unit": "bun test tests",
+        "test:e2e": "bun run build && bun test ./tests/e2e/*.ts",
+        "test:lint": "eslint . && prettier --check .",
+        "lint:write": "eslint . --fix && prettier --write .",
+        "dist:linux": "bun run build:icon && bun run build && electron-builder --publish never --linux",
+        "dist:win": "bun run build:icon && bun run build && electron-builder --publish never --win",
+        "dist:mac": "bun run build:icon && bun run build && electron-builder --publish never --mac --x64"
+    },
+    "devDependencies": {
+        "@eslint/js": "^10.0.1",
+        "@types/node": "^26.6.2",
+        "concurrently": "^9.2.0",
+        "electron": "44.3.0",
+        "electron-builder": "^25.1.8",
+        "eslint": "^10.10.0",
+        "globals": "^17.12.0",
+        "prettier": "^3.9.6",
+        "typescript": "^5.9.0",
+        "typescript-eslint": "^8.70.0",
+        "vite": "^7.0.0",
+        "wait-on": "^8.0.0"
+    },
+    "build": {
+        "appId": "com.annotate.app",
+        "productName": "Screen Annotate",
+        "executableName": "annotate",
+        "extraMetadata": {
+            "productName": "Screen Annotate",
+            "appId": "com.annotate.app"
+        },
+        "directories": {
+            "output": "release"
+        },
+        "files": [
+            "dist/**/*",
+            "package.json"
+        ],
+        "extraResources": [
+            {
+                "from": "resources/linux/register-toggle.sh",
+                "to": "register-toggle.sh"
+            },
+            {
+                "from": "package.json",
+                "to": "../package.json",
+                "filter": [
+                    "*"
+                ]
+            }
+        ],
+        "appImage": {
+            "artifactName": "annotate-${version}-${arch}.${ext}"
+        },
+        "deb": {
+            "afterInstall": "resources/linux/install-hook.sh",
+            "afterRemove": "resources/linux/remove-hook.sh",
+            "artifactName": "annotate_${version}_${arch}.deb"
+        },
+        "linux": {
+            "target": [
+                "AppImage",
+                "deb"
+            ],
+            "category": "Graphics",
+            "icon": "assets/logo-512.png"
+        },
+        "nsis": {
+            "artifactName": "annotate-setup-${version}.exe",
+            "runAfterFinish": true
+        },
+        "portable": {
+            "artifactName": "annotate-${version}-portable.exe"
+        },
+        "win": {
+            "target": [
+                "nsis",
+                "portable"
+            ],
+            "icon": "assets/logo-512.png"
+        },
+        "mac": {
+            "target": [
+                "dmg",
+                "zip"
+            ],
+            "category": "public.app-category.graphics-design",
+            "icon": "assets/logo-512.png",
+            "artifactName": "annotate-${version}-${arch}.${ext}"
+        }
+    },
+    "dependencies": {
+        "electronmon": "^2.0.4",
+        "loggest": "^1.0.8"
+    }
+}

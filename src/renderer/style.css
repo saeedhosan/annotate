@@ -1,0 +1,143 @@
+* {
+    box-sizing: border-box;
+}
+html,
+body,
+#canvas {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+body {
+    background: transparent;
+    font-family: Inter, system-ui, sans-serif;
+}
+body.blank {
+    background: var(--background, #fff);
+}
+body.web {
+    background: var(--background, #262527);
+    user-select: none;
+    -webkit-user-select: none;
+    overscroll-behavior: none;
+}
+#canvas {
+    position: fixed;
+    inset: 0;
+    cursor: crosshair;
+    z-index: 1;
+    touch-action: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+}
+body.web #web-tools {
+    position: fixed;
+    left: 10px;
+    top: 10px;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 8px;
+    max-width: 60vw;
+    padding: 8px 10px;
+    border-radius: 14px;
+    background: #1d1c1e;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+    font:
+        13px system-ui,
+        sans-serif;
+    color: #eee;
+    touch-action: none;
+    cursor: grab;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+}
+body.web #web-tools:active {
+    cursor: grabbing;
+}
+body.web #web-tools button {
+    appearance: none;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.08);
+    color: #eee;
+    border-radius: 9px;
+    padding: 7px 10px;
+    cursor: pointer;
+    font: inherit;
+    min-height: 34px;
+}
+body.web #web-tools button.on {
+    background: rgba(0, 255, 255, 0.22);
+    border-color: #00ffff;
+}
+body.web #web-tools .color-wrap {
+    position: relative;
+    display: flex;
+}
+body.web #web-tools .color-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+body.web #web-tools .dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    display: inline-block;
+}
+body.web #web-tools .caret {
+    font-size: 9px;
+    opacity: 0.8;
+}
+body.web #web-tools .color-menu {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 6px;
+    max-height: 45vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.28) transparent;
+    border-radius: 10px;
+    background: #1d1c1e;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+    z-index: 4;
+}
+body.web #web-tools .color-menu[hidden] {
+    display: none;
+}
+body.web #web-tools .color-menu::-webkit-scrollbar {
+    width: 6px;
+}
+body.web #web-tools .color-menu::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.28);
+    border-radius: 3px;
+}
+body.web #web-tools .color-menu::-webkit-scrollbar-track {
+    background: transparent;
+}
+body.web #web-tools .color-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-align: left;
+    white-space: nowrap;
+}
+body.web #web-tools button svg {
+    vertical-align: middle;
+}
+@media (hover: hover) and (pointer: fine) {
+    body.web #web-tools {
+        display: none;
+    }
+}

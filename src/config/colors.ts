@@ -1,0 +1,33 @@
+export const PALETTE = {
+    primary: '#00ffff',
+    textPrimary: '#ffffff',
+} as const;
+
+export const COLORS: Record<string, string> = {
+    a: '#00ffff',
+    b: '#1976d2',
+    c: '#00ffff',
+    d: '#ff8c00',
+    e: '#50c878',
+    f: '#ff00ff',
+    g: '#22c55e',
+    h: '#ff69b4',
+    i: '#4b0082',
+    j: '#00a86b',
+    k: '#f0e68c',
+    l: '#00ff00',
+    m: '#ff00ff',
+    n: '#000080',
+    o: '#ffa500',
+    p: '#800080',
+    q: '#6c6c7c',
+    r: '#ff1f1f',
+    s: '#c0c0c0',
+    t: '#008080',
+    u: '#120a8f',
+    v: '#8f00ff',
+    w: '#ffffff',
+    x: '#738678',
+    y: '#ffff00',
+    z: '#0014a8',
+};
