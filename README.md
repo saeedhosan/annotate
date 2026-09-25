@@ -67,9 +67,9 @@ Open Screen Annotate once and leave it running. F8 does the rest.
 | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Web      | [Live Preview](https://saeedhosan.github.io/annotate)                                                                                                                                                              |
 | Mobile   | [Install from the web](https://saeedhosan.github.io/annotate)                                                                                                                                                      |
-| Linux    | [`.deb`](https://github.com/saeedhosan/annotate/releases/download/v0.0.0/annotate_0.0.0_amd64.deb) · [`.AppImage`](https://github.com/saeedhosan/annotate/releases/download/v0.0.0/annotate-0.0.0-x86_64.AppImage) |
-| macOS    | [`.dmg`](https://github.com/saeedhosan/annotate/releases/download/v0.0.0/annotate-0.0.0-x64.dmg) · [`.zip`](https://github.com/saeedhosan/annotate/releases/download/v0.0.0/annotate-0.0.0-x64.zip)                |
-| Windows  | [Installer](https://github.com/saeedhosan/annotate/releases/download/v0.0.0/annotate-setup-0.0.0.exe) · [Portable](https://github.com/saeedhosan/annotate/releases/download/v0.0.0/annotate-0.0.0-portable.exe)    |
+| Linux    | [`.deb`](https://github.com/saeedhosan/annotate/releases/download/v1.0.0/annotate_1.0.0_amd64.deb) · [`.AppImage`](https://github.com/saeedhosan/annotate/releases/download/v1.0.0/annotate-1.0.0-x86_64.AppImage) |
+| macOS    | [`.dmg`](https://github.com/saeedhosan/annotate/releases/download/v1.0.0/annotate-1.0.0-x64.dmg) · [`.zip`](https://github.com/saeedhosan/annotate/releases/download/v1.0.0/annotate-1.0.0-x64.zip)                |
+| Windows  | [Installer](https://github.com/saeedhosan/annotate/releases/download/v1.0.0/annotate-setup-1.0.0.exe) · [Portable](https://github.com/saeedhosan/annotate/releases/download/v1.0.0/annotate-1.0.0-portable.exe)    |
 
 Linux is x64, macOS is x64 (Intel), Windows is x64. Other builds live on the [releases page](https://github.com/saeedhosan/annotate/releases).
 
@@ -81,27 +81,27 @@ Pushing a v* tag builds all three desktop installers and publishes them. The web
 
 AppImage:
 
-1. Download [annotate-0.0.0-x86_64.AppImage](https://github.com/saeedhosan/annotate/releases/download/v0.0.0/annotate-0.0.0-x86_64.AppImage).
-2. `chmod +x annotate-0.0.0-x86_64.AppImage`, then run it.
+1. Download [annotate-1.0.0-x86_64.AppImage](https://github.com/saeedhosan/annotate/releases/download/v1.0.0/annotate-1.0.0-x86_64.AppImage).
+2. `chmod +x annotate-1.0.0-x86_64.AppImage`, then run it.
 3. Press F8 for the layer, Ctrl+F8 to quit.
 
 Debian and Ubuntu:
 
-1. Download [annotate_0.0.0_amd64.deb](https://github.com/saeedhosan/annotate/releases/download/v0.0.0/annotate_0.0.0_amd64.deb).
-2. `sudo dpkg -i annotate_0.0.0_amd64.deb`.
+1. Download [annotate_1.0.0_amd64.deb](https://github.com/saeedhosan/annotate/releases/download/v1.0.0/annotate_1.0.0_amd64.deb).
+2. `sudo dpkg -i annotate_1.0.0_amd64.deb`.
 3. The installer creates `/usr/bin/annotate` and registers the F8 and Ctrl+F8 GNOME bindings for the current user. The app registers them again on launch if needed.
 4. Run `annotate toggle` from a terminal. Uninstalling removes the symlink.
 
 #### macOS
 
-1. Open [annotate-0.0.0-x64.dmg](https://github.com/saeedhosan/annotate/releases/download/v0.0.0/annotate-0.0.0-x64.dmg).
+1. Open [annotate-1.0.0-x64.dmg](https://github.com/saeedhosan/annotate/releases/download/v1.0.0/annotate-1.0.0-x64.dmg).
 2. Drag Screen Annotate into Applications.
 3. Launch it once so the toggle helper is registered.
 4. F8 shows the layer, Ctrl+F8 quits. A zip is there when no install is wanted.
 
 #### Windows
 
-1. Run [annotate-setup-0.0.0.exe](https://github.com/saeedhosan/annotate/releases/download/v0.0.0/annotate-setup-0.0.0.exe). No install needed for the [portable build](https://github.com/saeedhosan/annotate/releases/download/v0.0.0/annotate-0.0.0-portable.exe).
+1. Run [annotate-setup-1.0.0.exe](https://github.com/saeedhosan/annotate/releases/download/v1.0.0/annotate-setup-1.0.0.exe). No install needed for the [portable build](https://github.com/saeedhosan/annotate/releases/download/v1.0.0/annotate-1.0.0-portable.exe).
 2. Start Screen Annotate from the Start menu.
 3. F8 toggles the layer, Ctrl+F8 quits.
 
@@ -219,9 +219,9 @@ bun run dist:mac
 
 Everything lands in `release/`:
 
-- **Linux** - `annotate-0.0.0-<arch>.AppImage` and `annotate_0.0.0_<arch>.deb`.
-- **Windows** - `annotate-setup-0.0.0.exe` and a portable `annotate-0.0.0-portable.exe`.
-- **macOS** - `annotate-0.0.0-<arch>.dmg` and `annotate-0.0.0-<arch>.zip`.
+- **Linux** - `annotate-1.0.0-<arch>.AppImage` and `annotate_1.0.0_<arch>.deb`.
+- **Windows** - `annotate-setup-1.0.0.exe` and a portable `annotate-1.0.0-portable.exe`.
+- **macOS** - `annotate-1.0.0-<arch>.dmg` and `annotate-1.0.0-<arch>.zip`.
 
 ### Project Structure
 

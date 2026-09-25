@@ -38,7 +38,7 @@ test('exposes the configured environment', () => {
 test('reads identity from package.json', () => {
     const application = new Application(electronMock.mock.app as never).withEnv(EnvEnum.Test);
     expect(application.name()).toBe('annotate');
-    expect(application.version()).toBe('0.0.0');
+    expect(application.version()).toBe('1.0.0');
     expect(application.title()).toBe('Screen Annotate');
 });
 
@@ -54,7 +54,7 @@ test('about combines identity, description and environment', () => {
     const about = application.about();
     expect(about.name).toBe('annotate');
     expect(about.title).toBe('Screen Annotate');
-    expect(about.version).toBe('0.0.0');
+    expect(about.version).toBe('1.0.0');
     expect(about.env).toBe('test');
     expect(about.description.length).toBeGreaterThan(0);
 });
