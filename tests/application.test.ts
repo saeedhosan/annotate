@@ -224,12 +224,21 @@ test('a fresh primary --toggle opens the overlay like a launcher', async () => {
 });
 
 test('start registers the global toggle and quit shortcuts', async () => {
+    electronMock.mock.setPackaged(true);
     const application = build();
     application.start();
     await flush();
     expect(electronMock.mock.globalShortcuts.has('F8')).toBe(true);
     expect(electronMock.mock.globalShortcuts.has('Ctrl+F8')).toBe(true);
     expect(electronMock.mock.globalShortcuts.has(ACCELERATOR)).toBe(true);
+});
+
+test('start skips the global toggle shortcut outside a packaged build', async () => {
+    const application = build();
+    application.start();
+    await flush();
+    expect(electronMock.mock.globalShortcuts.has('F8')).toBe(false);
+    expect(electronMock.mock.globalShortcuts.has('Ctrl+F8')).toBe(false);
 });
 
 test('dev argv keeps flags after the app path', () => {

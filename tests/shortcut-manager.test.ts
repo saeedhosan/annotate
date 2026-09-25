@@ -56,12 +56,14 @@ test('unregisterNewCanvas removes the accelerator', () => {
 });
 
 test('registerToggleShortcut registers the toggle directly when supported', () => {
+    electronMock.mock.setPackaged(true);
     const shortcuts = manager();
     shortcuts.registerToggleShortcut();
     expect(electronMock.mock.globalShortcuts.has('F8')).toBe(true);
 });
 
 test('registerToggleShortcut registers a quit accelerator when a handler exists', () => {
+    electronMock.mock.setPackaged(true);
     const shortcuts = manager(() => undefined);
     shortcuts.registerToggleShortcut();
     expect(electronMock.mock.globalShortcuts.has('F8')).toBe(true);
@@ -69,8 +71,16 @@ test('registerToggleShortcut registers a quit accelerator when a handler exists'
 });
 
 test('registerToggleShortcut registers no in-process binding when the toggle is held', () => {
+    electronMock.mock.setPackaged(true);
     electronMock.mock.conflicts.add('F8');
     const shortcuts = manager();
+    shortcuts.registerToggleShortcut();
+    expect(electronMock.mock.globalShortcuts.has('F8')).toBe(false);
+    expect(electronMock.mock.globalShortcuts.has('Ctrl+F8')).toBe(false);
+});
+
+test('registerToggleShortcut is skipped outside a packaged build', () => {
+    const shortcuts = manager(() => undefined);
     shortcuts.registerToggleShortcut();
     expect(electronMock.mock.globalShortcuts.has('F8')).toBe(false);
     expect(electronMock.mock.globalShortcuts.has('Ctrl+F8')).toBe(false);

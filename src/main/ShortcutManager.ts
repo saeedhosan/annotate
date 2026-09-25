@@ -47,6 +47,10 @@ export class ShortcutManager {
     }
 
     registerToggleShortcut(): void {
+        if (!app.isPackaged) {
+            logger.info('toggle shortcut is only registered for a packaged build.');
+            return;
+        }
         if (this.registerDirectToggle()) {
             this.registerDirectQuit();
             return;
