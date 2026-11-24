@@ -1,7 +1,0 @@
-dist/
-release/
-build/
-node_modules/
-assets/
-*.lock
-*lock*

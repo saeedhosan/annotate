@@ -1,16 +1,14 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="theme-color" content="#262527" />
-        <link rel="manifest" href="./manifest.webmanifest" />
-        <link rel="icon" href="./logo-512.png" type="image/png" />
-        <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
-        <title>Annotate</title>
-    </head>
-    <body>
-        <canvas id="canvas"></canvas>
-        <script type="module" src="/app.ts"></script>
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Screen Draw</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <canvas id="canvas" aria-label="Screen drawing canvas"></canvas>
+    <aside id="status" aria-live="polite">Drawing off · F9 to enable</aside>
+    <script src="renderer.js"></script>
+  </body>
 </html>
