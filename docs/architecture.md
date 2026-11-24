@@ -136,14 +136,14 @@ Undo / Clear
 
 **Foundation Screens**
 
-- **Overlay** — Transparent desktop drawing layer (frameless, always-on-top).
-- **Web/PWA Canvas** — Browser-based drawing surface (feature subset).
-- **New blank Canvas** — Independent drawing surface with a selected background.
+- **Overlay** - Transparent desktop drawing layer (frameless, always-on-top).
+- **Web/PWA Canvas** - Browser-based drawing surface (feature subset).
+- **New blank Canvas** - Independent drawing surface with a selected background.
 
 **Discovery Screens**
 
-- **New Canvas Dialog** — Select the background before creating a canvas.
-- **Mobile Toolbar** — Touch-friendly for drawing, erasing, colors, undo, and clear.
+- **New Canvas Dialog** - Select the background before creating a canvas.
+- **Mobile Toolbar** - Touch-friendly for drawing, erasing, colors, undo, and clear.
 
 ## Assumptions
 
@@ -178,27 +178,27 @@ Annotate uses in-memory application state rather than persistent storage.
 
 **Desktop APIs**
 
-- **Global Shortcut** — Register and handle system-wide global keyboard shortcuts.
-- **Window API** — Create, show, hide, and manage transparent application windows.
-- **Clipboard API** — Read supported clipboard content for paste operations.
-- **Input API** — Receive keyboard and pointer events from the application and system.
-- **Single-instance Lock** — Prevent multiple overlay instances; forward CLI args.
+- **Global Shortcut** - Register and handle system-wide global keyboard shortcuts.
+- **Window API** - Create, show, hide, and manage transparent application windows.
+- **Clipboard API** - Read supported clipboard content for paste operations.
+- **Input API** - Receive keyboard and pointer events from the application and system.
+- **Single-instance Lock** - Prevent multiple overlay instances; forward CLI args.
 
 **Browser APIs**
 
-- **Canvas API** — Render strokes and pasted objects.
-- **Clipboard API** — Read supported clipboard content.
-- **Pointer Events API** — Handle mouse, pen, and touch input.
-- **Keyboard Events API** — Handle keyboard interactions.
-- **Fullscreen API** — Provide a full-screen drawing experience where supported.
-- **Storage APIs** — Not required for the current implementation.
+- **Canvas API** - Render strokes and pasted objects.
+- **Clipboard API** - Read supported clipboard content.
+- **Pointer Events API** - Handle mouse, pen, and touch input.
+- **Keyboard Events API** - Handle keyboard interactions.
+- **Fullscreen API** - Provide a full-screen drawing experience where supported.
+- **Storage APIs** - Not required for the current implementation.
 
 **Application Interface (IPC)**
 
-- **app-config** — Provide the application configuration (e.g. window title) to the renderer.
-- **create-new-window** — Request creation of a new blank canvas.
-- **clipboard-content** — Transfer clipboard content to the annotation layer.
-- **window-visibility** — Notify renderer of overlay show/hide.
+- **app-config** - Provide the application configuration (e.g. window title) to the renderer.
+- **create-new-window** - Request creation of a new blank canvas.
+- **clipboard-content** - Transfer clipboard content to the annotation layer.
+- **window-visibility** - Notify renderer of overlay show/hide.
 
 **API Considerations**
 
@@ -211,14 +211,14 @@ Annotate uses in-memory application state rather than persistent storage.
 
 ### Core Components
 
-- **Application** — App lifecycle, CLI parsing, single-instance lock, command dispatch.
-- **CommandLine** — Command line argument parsing, command registry, execution.
-- **ShortcutManager** — Registers and manages platform-specific global shortcuts.
-- **WindowManager** — Creates, tracks, and manages windows and their lifecycle.
-- **IpcServer** — Handles create-new-window, clipboard-content, window-visibility.
-- **ClipboardService** — Bridges renderer clipboard reads to main process.
-- **Renderer/Annotation** — Manages the annotation UI and handles drawing interactions.
-- **Logger** — Provides structured console and file logging using `loggest`.
+- **Application** - App lifecycle, CLI parsing, single-instance lock, command dispatch.
+- **CommandLine** - Command line argument parsing, command registry, execution.
+- **ShortcutManager** - Registers and manages platform-specific global shortcuts.
+- **WindowManager** - Creates, tracks, and manages windows and their lifecycle.
+- **IpcServer** - Handles create-new-window, clipboard-content, window-visibility.
+- **ClipboardService** - Bridges renderer clipboard reads to main process.
+- **Renderer/Annotation** - Manages the annotation UI and handles drawing interactions.
+- **Logger** - Provides structured console and file logging using `loggest`.
 
 ### High-Level Design
 
@@ -278,25 +278,25 @@ The **Shortcut Manager** isolates platform-specific global shortcut registration
 
 ### Performance Considerations
 
-- **Input latency** — Drawing should respond immediately to pointer movement.
-- **Rendering** — Avoid unnecessary full-canvas redraws during continuous drawing.
-- **Memory usage** — Keep stroke and pasted-object data compact.
-- **Large sessions** — Performance should remain usable as annotations increase.
+- **Input latency** - Drawing should respond immediately to pointer movement.
+- **Rendering** - Avoid unnecessary full-canvas redraws during continuous drawing.
+- **Memory usage** - Keep stroke and pasted-object data compact.
+- **Large sessions** - Performance should remain usable as annotations increase.
 
 ### Target Benchmarks
 
-- **Input response** — No noticeable delay during drawing.
-- **Drawing smoothness** — Maintain smooth rendering during rapid pointer movement.
-- **Memory growth** — No excessive growth during a normal drawing session.
+- **Input response** - No noticeable delay during drawing.
+- **Drawing smoothness** - Maintain smooth rendering during rapid pointer movement.
+- **Memory growth** - No excessive growth during a normal drawing session.
 
 **Target Benchmarks**
 
 The initial benchmarks focus on identifying and improving drawing bottlenecks.
 
-- **Rapid drawing test** — No visible stuttering during continuous input.
-- **Large stroke test** — Remain responsive with thousands of stored points.
-- **Long session test** — No abnormal memory growth during extended use.
-- **Erase test** — Erasing remains responsive as stroke count increases.
+- **Rapid drawing test** - No visible stuttering during continuous input.
+- **Large stroke test** - Remain responsive with thousands of stored points.
+- **Long session test** - No abnormal memory growth during extended use.
+- **Erase test** - Erasing remains responsive as stroke count increases.
 
 ## Testing
 
@@ -444,8 +444,8 @@ Test the main user workflows through the actual application.
 
 Annotate has two release targets:
 
-- **Desktop** — Packaged as native applications for Linux, Windows, and macOS.
-- **PWA** — Built as a browser application and installable from supported browsers.
+- **Desktop** - Packaged as native applications for Linux, Windows, and macOS.
+- **PWA** - Built as a browser application and installable from supported browsers.
 
 **Release Flow**
 
@@ -467,9 +467,9 @@ App Distribution / Browser / PWA
 
 **Desktop Packaging**
 
-- **Linux** — `.deb` and `.AppImage` (dconf skipped).
-- **Windows** — NSIS installer and portable `.exe`.
-- **macOS** — `.dmg` and `.zip` (`productName` = executableName).
+- **Linux** - `.deb` and `.AppImage` (dconf skipped).
+- **Windows** - NSIS installer and portable `.exe`.
+- **macOS** - `.dmg` and `.zip` (`productName` = executableName).
 
 Desktop builds include native window, global shortcut (F8/Ctrl+F8), overlay, and platform-specific integration.
 
@@ -488,6 +488,6 @@ Desktop builds include native window, global shortcut (F8/Ctrl+F8), overlay, and
 
 ### Rollback
 
-- **Desktop** — Re-publish the previous stable package.
-- **PWA** — Deploy the previous stable web build.
+- **Desktop** - Re-publish the previous stable package.
+- **PWA** - Deploy the previous stable web build.
 - No database rollback is required because Annotate has no persistent backend data.

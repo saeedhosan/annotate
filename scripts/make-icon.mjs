@@ -1,5 +1,5 @@
-import { existsSync, mkdirSync, statSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
+import { existsSync, mkdirSync, statSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -109,8 +109,8 @@ for (const { size, out, fill } of targets) {
             src,
             '-vf',
             `crop=${cropW}:${cropH}:${minX}:${minY},` +
-                `scale=${scaleW}:${scaleH}:flags=lanczos,` +
-                `pad=${size}:${size}:(ow-iw)/2:(oh-ih)/2:color=black@0`,
+            `scale=${scaleW}:${scaleH}:flags=lanczos,` +
+            `pad=${size}:${size}:(ow-iw)/2:(oh-ih)/2:color=black@0`,
             '-compression_level',
             '9',
             '-frames:v',

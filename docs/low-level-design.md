@@ -1,4 +1,4 @@
-# Annotate — Low-Level Design
+# Annotate - Low-Level Design
 
 ## Table of Contents
 
@@ -36,42 +36,42 @@ This document defines the internal design of Annotate, including components, res
 
 The composition root for the Electron main process.
 
-- `os(): OperatingSystemInformation` — Get operating system information.
-- `env(): string` — Get the application env.
-- `name(): string` — Get the application name.
-- `title(): string` — Get the application title.
-- `version(): string` — Get the application version.
-- `config(): ApplicationConfig` — Get application configuration.
-- `theme(): Theme` — Get the current application theme.
-- `colors(): ColorPalette` — Get application colors.
-- `about(): ApplicationInfo` — Get application information.
-- `appPath(): string` — Get the application code path.
-- `binaryPath(): string` — Get the application binary path.
-- `executablePath(): string` — Get the resolved application executable path.
-- `configure(): Application` — Configure application settings.
-- `register(): Application` — Register services, drivers, and dependencies.
-- `bootstrap(): Application` — Initialize registered services.
-- `boot(): Application` — Boot the application after initialization.
-- `start(): void` — Start application services.
-- `stop(): void` — Stop application services.
-- `quit(): void` — Shut down the application.
-- `withEnv(env:EnvEnum): Application` — Configure application env.
-- `withConfig(config: ApplicationConfig): Application` — Configure settings.
-- `withTheme(theme: Theme): Application` — Configure the application theme.
-- `withCommands(): Application` — Register application commands.
-- `withKeyBindings(): Application` — Register keyboard bindings.
-- `withServices(): Application` — Register application services.
-- `withDrivers(): Application` — Register platform drivers.
-- `isRunning(): boolean` — Check whether the application is running.
-- `isCommandLine(): boolean` — Check whether the application is running command line.
-- `isRunningTests(): boolean` — Check whether the application is running tests.
-- `handleSecondInstance(argv: string[]): void` — Handle another launch of the application.
-- `handleReady(): void` — Handle application readiness.
-- `handleActivate(): void` — Handle application activation.
-- `handleBeforeQuit(): void` — Handle shutdown preparation.
-- `handleWindowAllClosed(): void` — Handle all application windows closing.
-- `isReady(): boolean` — Check whether the application is ready.
-- `windows(): BrowserWindow[]` — Get active application windows.
+- `os(): OperatingSystemInformation` - Get operating system information.
+- `env(): string` - Get the application env.
+- `name(): string` - Get the application name.
+- `title(): string` - Get the application title.
+- `version(): string` - Get the application version.
+- `config(): ApplicationConfig` - Get application configuration.
+- `theme(): Theme` - Get the current application theme.
+- `colors(): ColorPalette` - Get application colors.
+- `about(): ApplicationInfo` - Get application information.
+- `appPath(): string` - Get the application code path.
+- `binaryPath(): string` - Get the application binary path.
+- `executablePath(): string` - Get the resolved application executable path.
+- `configure(): Application` - Configure application settings.
+- `register(): Application` - Register services, drivers, and dependencies.
+- `bootstrap(): Application` - Initialize registered services.
+- `boot(): Application` - Boot the application after initialization.
+- `start(): void` - Start application services.
+- `stop(): void` - Stop application services.
+- `quit(): void` - Shut down the application.
+- `withEnv(env:EnvEnum): Application` - Configure application env.
+- `withConfig(config: ApplicationConfig): Application` - Configure settings.
+- `withTheme(theme: Theme): Application` - Configure the application theme.
+- `withCommands(): Application` - Register application commands.
+- `withKeyBindings(): Application` - Register keyboard bindings.
+- `withServices(): Application` - Register application services.
+- `withDrivers(): Application` - Register platform drivers.
+- `isRunning(): boolean` - Check whether the application is running.
+- `isCommandLine(): boolean` - Check whether the application is running command line.
+- `isRunningTests(): boolean` - Check whether the application is running tests.
+- `handleSecondInstance(argv: string[]): void` - Handle another launch of the application.
+- `handleReady(): void` - Handle application readiness.
+- `handleActivate(): void` - Handle application activation.
+- `handleBeforeQuit(): void` - Handle shutdown preparation.
+- `handleWindowAllClosed(): void` - Handle all application windows closing.
+- `isReady(): boolean` - Check whether the application is ready.
+- `windows(): BrowserWindow[]` - Get active application windows.
 
 A typical lifecycle is:
 
@@ -102,12 +102,12 @@ constructor(
 )
 ```
 
-- `name(): string` — Returns the application name.
-- `version(): string` — Returns the application version.
-- `theme(): Theme` — Returns the configured theme.
-- `colors(): ColorPalette` — Returns the configured color palette.
-- `commands(): Command[]` — Returns configured commands.
-- `keyBindings(): KeyBinding[]` — Returns configured keyboard bindings.
+- `name(): string` - Returns the application name.
+- `version(): string` - Returns the application version.
+- `theme(): Theme` - Returns the configured theme.
+- `colors(): ColorPalette` - Returns the configured color palette.
+- `commands(): Command[]` - Returns configured commands.
+- `keyBindings(): KeyBinding[]` - Returns configured keyboard bindings.
 
 **Validation**
 
@@ -137,9 +137,9 @@ Provides the command-line interface for launching and controlling Annotate.
 
 Defines the contract for an application command.
 
-- `name(): string` — Return the command name.
-- `description(): string` — Return the command description.
-- `execute(args: CommandArguments): any` — Execute the command.
+- `name(): string` - Return the command name.
+- `description(): string` - Return the command description.
+- `execute(args: CommandArguments): any` - Execute the command.
 
 **CommandLine**
 
@@ -149,15 +149,15 @@ Parses command-line input and dispatches registered commands.
 constructor()
 ```
 
-- `isRunningAgentMode():bool` — Check whether the system was launched in agent mode.
-- `register(command: Command): CommandLine` — Register a command.
-- `registerMany(commands: Command[]): CommandLine` — Register multiple commands.
-- `commands(): Command[]` — Return registered commands.
-- `parse(argv: string[]): CommandInput` — Parse process arguments.
-- `resolve(input: CommandInput): Command | null` — Resolve the requested command.
-- `execute(input: CommandInput): any` — Execute the resolved command.
-- `help(): string` — Generate command help.
-- `has(name: string): boolean` — Check whether a command is registered.
+- `isRunningAgentMode():bool` - Check whether the system was launched in agent mode.
+- `register(command: Command): CommandLine` - Register a command.
+- `registerMany(commands: Command[]): CommandLine` - Register multiple commands.
+- `commands(): Command[]` - Return registered commands.
+- `parse(argv: string[]): CommandInput` - Parse process arguments.
+- `resolve(input: CommandInput): Command | null` - Resolve the requested command.
+- `execute(input: CommandInput): any` - Execute the resolved command.
+- `help(): string` - Generate command help.
+- `has(name: string): boolean` - Check whether a command is registered.
 
 ### Built-in Commands
 
@@ -165,33 +165,33 @@ constructor()
 
 Shows the application window or overlay.
 
-- `name(): string` — Returns `show`.
-- `description(): string` — Returns the command description.
-- `execute(args: CommandArguments): any` — Requests the application to become visible.
+- `name(): string` - Returns `show`.
+- `description(): string` - Returns the command description.
+- `execute(args: CommandArguments): any` - Requests the application to become visible.
 
 **HideApplicationCommand**
 
 Hides the application window or overlay.
 
-- `name(): string` — Returns `hide`.
-- `description(): string` — Returns the command description.
-- `execute(args: CommandArguments): any` — Requests the application to become hidden.
+- `name(): string` - Returns `hide`.
+- `description(): string` - Returns the command description.
+- `execute(args: CommandArguments): any` - Requests the application to become hidden.
 
 **ToggleApplicationCommand**
 
 Toggles application visibility.
 
-- `name(): string` — Returns `toggle`.
-- `description(): string` — Returns the command description.
-- `execute(args: CommandArguments): any` — Toggles application visibility.
+- `name(): string` - Returns `toggle`.
+- `description(): string` - Returns the command description.
+- `execute(args: CommandArguments): any` - Toggles application visibility.
 
 **QuitApplicationCommand**
 
 Quits the application.
 
-- `name(): string` — Returns `quit`.
-- `description(): string` — Returns the command description.
-- `execute(args: CommandArguments): any` — Requests application shutdown.
+- `name(): string` - Returns `quit`.
+- `description(): string` - Returns the command description.
+- `execute(args: CommandArguments): any` - Requests application shutdown.
 
 **Command Dependencies**
 
@@ -208,18 +208,18 @@ QuitApplicationCommand   => Application
 
 **Data Interface**
 
-_CommandInput_ — Represents parsed command-line input.
+_CommandInput_ - Represents parsed command-line input.
 
 - `name: string | null`
 - `arguments: string[]`
 - `options: Record<string, string | boolean>`
 
-_CommandArguments_ — Arguments passed to a command during execution.
+_CommandArguments_ - Arguments passed to a command during execution.
 
 - `arguments: string[]`
 - `options: Record<string, string | boolean>`
 
-_CommandResult_ — Represents the outcome of command execution.
+_CommandResult_ - Represents the outcome of command execution.
 
 - `success: boolean`
 - `message?: string`
@@ -233,10 +233,10 @@ Commands are registered during application configuration.
 Application
     |
 CommandLine.registerMany()
-    |— show
-    |— hide
-    |— toggle
-    |— quit
+    |- show
+    |- hide
+    |- toggle
+    |- quit
 ```
 
 **Execution Flow**
@@ -301,15 +301,15 @@ Applies platform-specific Electron configuration before the application starts. 
 constructor(os: OperatingSystemInformation)
 ```
 
-- `apply(): void` — Apply all required platform configuration.
-- `applyWayland(): void` — Apply Wayland-specific Electron configuration.
-- `applyX11(): void` — Apply X11-specific configuration when required.
-- `applyWindows(): void` — Apply Windows-specific configuration when required.
-- `applyMacOS(): void` — Apply macOS-specific configuration when required.
-- `isWayland(): boolean` — Check whether the current session uses Wayland.
-- `isX11(): boolean` — Check whether the current session uses X11.
-- `isWindows(): boolean` — Check whether the application is running on Windows.
-- `isMacOS(): boolean` — Check whether the application is running on macOS.
+- `apply(): void` - Apply all required platform configuration.
+- `applyWayland(): void` - Apply Wayland-specific Electron configuration.
+- `applyX11(): void` - Apply X11-specific configuration when required.
+- `applyWindows(): void` - Apply Windows-specific configuration when required.
+- `applyMacOS(): void` - Apply macOS-specific configuration when required.
+- `isWayland(): boolean` - Check whether the current session uses Wayland.
+- `isX11(): boolean` - Check whether the current session uses X11.
+- `isWindows(): boolean` - Check whether the application is running on Windows.
+- `isMacOS(): boolean` - Check whether the application is running on macOS.
 
 **Configuration Flow**
 
@@ -362,19 +362,19 @@ constructor(
 )
 ```
 
-- `platform: string` — Runtime platform identifier.
-- `name: string` — Operating system name.
-- `version: string` — Operating system version.
-- `release: string` — Operating system release.
-- `architecture: string` — System architecture.
-- `session: string | null` — Desktop session type.
-- `desktopEnvironment: string | null` — Desktop environment when available.
-- `displayServer: string | null` — Display server when available.
-- `fromRuntime(): OperatingSystemInformation` — Contains the platform detection logic.
-- `isLinux(): boolean` — Check whether the platform is Linux.
-- `isWindows(): boolean` — Check whether the platform is Windows.
-- `isMacOS(): boolean` — Check whether the platform is macOS.
-- `isWayland(): boolean` — Check whether the display server is Wayland.
+- `platform: string` - Runtime platform identifier.
+- `name: string` - Operating system name.
+- `version: string` - Operating system version.
+- `release: string` - Operating system release.
+- `architecture: string` - System architecture.
+- `session: string | null` - Desktop session type.
+- `desktopEnvironment: string | null` - Desktop environment when available.
+- `displayServer: string | null` - Display server when available.
+- `fromRuntime(): OperatingSystemInformation` - Contains the platform detection logic.
+- `isLinux(): boolean` - Check whether the platform is Linux.
+- `isWindows(): boolean` - Check whether the platform is Windows.
+- `isMacOS(): boolean` - Check whether the platform is macOS.
+- `isWayland(): boolean` - Check whether the display server is Wayland.
 
 **Unit Tests**
 
@@ -393,22 +393,22 @@ Manages the lifecycle, visibility, and configuration of application windows.
 constructor(config: Partial<WindowConfig> = {})
 ```
 
-- `createOverlay(): BrowserWindow` — Create and register the transparent overlay.
-- `createBlankWindow(background = 'transparent'): BrowserWindow` — Create and register a blank canvas window.
-- `setVisible(visible: boolean): void` — Show or hide the annotation overlay.
-- `isVisible(): boolean` — Check whether the annotation overlay is visible.
-- `revealOverlay(): void` — Show the overlay and make it available for interaction.
-- `focusOverlay(): void` — Focus the overlay when interaction requires it.
-- `promptForNewCanvas(parent?: BrowserWindow): Promise<void>` — Request creation of a new blank canvas.
-- `track(window: BrowserWindow): void` — Register an window for lifecycle management.
-- `windows(): BrowserWindow[]` — Return the currently tracked application windows.
-- `load(window?: BrowserWindow, background?: string): void` — Load renderer content into a window.
-- `close(window: BrowserWindow): void` — Remove and close a tracked window.
-- `closeAll(): void` — Close all tracked application windows.
+- `createOverlay(): BrowserWindow` - Create and register the transparent overlay.
+- `createBlankWindow(background = 'transparent'): BrowserWindow` - Create and register a blank canvas window.
+- `setVisible(visible: boolean): void` - Show or hide the annotation overlay.
+- `isVisible(): boolean` - Check whether the annotation overlay is visible.
+- `revealOverlay(): void` - Show the overlay and make it available for interaction.
+- `focusOverlay(): void` - Focus the overlay when interaction requires it.
+- `promptForNewCanvas(parent?: BrowserWindow): Promise<void>` - Request creation of a new blank canvas.
+- `track(window: BrowserWindow): void` - Register an window for lifecycle management.
+- `windows(): BrowserWindow[]` - Return the currently tracked application windows.
+- `load(window?: BrowserWindow, background?: string): void` - Load renderer content into a window.
+- `close(window: BrowserWindow): void` - Remove and close a tracked window.
+- `closeAll(): void` - Close all tracked application windows.
 
 **Window Types**
 
-_Overlay Window_ — The main annotation surface.
+_Overlay Window_ - The main annotation surface.
 
 - Transparent.
 - Always on top.
@@ -416,7 +416,7 @@ _Overlay Window_ — The main annotation surface.
 - Hosts the annotation renderer.
 - Can be shown or hidden without destroying the window.
 
-_Blank Canvas Window_ — An independent drawing window.
+_Blank Canvas Window_ - An independent drawing window.
 
 - Uses a selectable background.
 - Hosts the annotation renderer.
@@ -543,10 +543,10 @@ Provides the controlled interface between the renderer process and the Electron 
 constructor(windowManager: WindowManager, clipboard: ClipboardService)
 ```
 
-- `register(): void` — Register all supported IPC handlers.
-- `unregister(): void` — Remove registered IPC handlers during shutdown.
-- `createNewWindow(): Promise<void>` — Handle a renderer request to create a new canvas window.
-- `clipboardContent(): Promise<ClipboardContent>` — Provide supported clipboard content to the renderer.
+- `register(): void` - Register all supported IPC handlers.
+- `unregister(): void` - Remove registered IPC handlers during shutdown.
+- `createNewWindow(): Promise<void>` - Handle a renderer request to create a new canvas window.
+- `clipboardContent(): Promise<ClipboardContent>` - Provide supported clipboard content to the renderer.
 
 **create-new-window**
 
@@ -580,7 +580,7 @@ ClipboardService
 
 **Data Structures**
 
-_ClipboardContent_ — Represents supported clipboard data.
+_ClipboardContent_ - Represents supported clipboard data.
 
 - `type: ClipboardContentType`
 - `text: string | null`
@@ -660,7 +660,7 @@ Reads supported clipboard content from the operating system for the renderer to 
 constructor()
 ```
 
-- `clipboardContent(): Promise<ClipboardContent>` — Resolve the current clipboard contents into a supported `ClipboardContent`.
+- `clipboardContent(): Promise<ClipboardContent>` - Resolve the current clipboard contents into a supported `ClipboardContent`.
 
 **Resolution Order**
 
@@ -721,9 +721,9 @@ The renderer can only communicate through registered channels.
 
 Provides the application configuration to the renderer.
 
-- **Direction** — `Renderer --> Main`
-- **Request** — `app-config`
-- **Response** — `{ title: string }`
+- **Direction** - `Renderer --> Main`
+- **Request** - `app-config`
+- **Response** - `{ title: string }`
 
 **create-new-window**
 
@@ -731,9 +731,9 @@ Requests the main process to create a new blank canvas window.
 
 No payload is required.
 
-- **Direction** — `Renderer --> Main`
-- **Request** — `create-new-window`
-- **Response** — `void`
+- **Direction** - `Renderer --> Main`
+- **Request** - `create-new-window`
+- **Response** - `void`
 
 **clipboard-content**
 
@@ -741,9 +741,9 @@ Requests supported clipboard content from the main process.
 
 No payload is required.
 
-- **Direction** — `Renderer --> Main`
-- **Request** — `clipboard-content`
-- **Response** — `ClipboardContent`
+- **Direction** - `Renderer --> Main`
+- **Request** - `clipboard-content`
+- **Response** - `ClipboardContent`
 
 _ClipboardContent_
 
@@ -756,17 +756,17 @@ _ClipboardContent_
 }
 ```
 
-_ClipboardContentType_ — `text, html, image, empty`
-_ClipboardImage_ — `{data: string, width: number, height: number, mimeType: string}`
+_ClipboardContentType_ - `text, html, image, empty`
+_ClipboardImage_ - `{data: string, width: number, height: number, mimeType: string}`
 
 **window-kind**
 
 Notifies the renderer whether its window is an overlay or a blank canvas.
 
-- **Direction** — `Main --> Renderer`
-- **Trigger** — When a window is loaded.
-- **Request** — `window-kind`
-- **Response** — `'overlay' | 'blank'`
+- **Direction** - `Main --> Renderer`
+- **Trigger** - When a window is loaded.
+- **Request** - `window-kind`
+- **Response** - `'overlay' | 'blank'`
 
 **Contract Rules**
 
@@ -789,17 +789,17 @@ windowKind = "window-kind"
 ```text
 Renderer
    |
-   ├── app-config —— Main (configuration)
+   ├── app-config -- Main (configuration)
    |
-   ├── create-new-window —— IpcServer
+   ├── create-new-window -- IpcServer
    |                            |
    |                       WindowManager
    |
-   ├── clipboard-content —— IpcServer
+   ├── clipboard-content -- IpcServer
    |                            |
    |                        ClipboardService
    |
-   └── window-kind —— Main (window type)
+   └── window-kind -- Main (window type)
 ```
 
 **Design Boundary**
@@ -821,18 +821,18 @@ constructor(
 )
 ```
 
-- `register(): void` — Register all configured global shortcuts.
-- `unregister(): void` — Unregister registered global shortcuts.
-- `registerToggleShortcut(): void` — Register the overlay toggle and quit shortcuts.
-- `registerNewCanvas(): void` — Register the new canvas shortcut.
-- `unregisterToggleShortcut(): void` — Remove the overlay toggle and quit shortcuts.
-- `unregisterNewCanvas(): void` — Remove the new canvas shortcut.
-- `runAgent(): void` — Start the system-wide shortcut agent when required.
-- `usesPathShim(): boolean` — Check whether the system requires the shortcut path shim (`/usr/bin/<slug>` resolving to the running binary).
-- `registerDconf(name: string, binding: string, command: string): void` — Register a GNOME custom keybinding for a dconf path.
-- `ensureDconfIds(ids: string[]): void` — Append the dconf custom-keybinding ids to the active shortcut list.
-- `toGnomeBinding(binding: string): string` — Convert an accelerator binding to GNOME syntax.
-- `launch(args: string[]): void` — Spawns the application detached with the given arguments.
+- `register(): void` - Register all configured global shortcuts.
+- `unregister(): void` - Unregister registered global shortcuts.
+- `registerToggleShortcut(): void` - Register the overlay toggle and quit shortcuts.
+- `registerNewCanvas(): void` - Register the new canvas shortcut.
+- `unregisterToggleShortcut(): void` - Remove the overlay toggle and quit shortcuts.
+- `unregisterNewCanvas(): void` - Remove the new canvas shortcut.
+- `runAgent(): void` - Start the system-wide shortcut agent when required.
+- `usesPathShim(): boolean` - Check whether the system requires the shortcut path shim (`/usr/bin/<slug>` resolving to the running binary).
+- `registerDconf(name: string, binding: string, command: string): void` - Register a GNOME custom keybinding for a dconf path.
+- `ensureDconfIds(ids: string[]): void` - Append the dconf custom-keybinding ids to the active shortcut list.
+- `toGnomeBinding(binding: string): string` - Convert an accelerator binding to GNOME syntax.
+- `launch(args: string[]): void` - Spawns the application detached with the given arguments.
 
 **Shortcuts**
 
@@ -847,7 +847,7 @@ register()
     |
 Toggling
     |
-Try Direct O/S Shortcut (globalShortcut) ——> success: use direct bindings
+Try Direct O/S Shortcut (globalShortcut) --> success: use direct bindings
     |
     | failure (e.g. Wayland grab unavailable)
     |
@@ -957,22 +957,22 @@ constructor(canvas: HTMLCanvasElement)
 
 It constructs its own `Accelerator`, `Annotate`, `Renderer`, `PasteService`, and `Toast`.
 
-- `bootstrap(): void` — Initialize the renderer and annotation interface.
-- `wireEvents(): void` — Connect keyboard, pointer, clipboard, and window events.
-- `installToolbar(): void` — Install renderer controls and toolbar actions.
-- `redraw(): void` — Redraw the current annotation state.
-- `clearAll(): void` — Clear the annotation layer and update the renderer.
-- `eraseAt(point: Point): void` — Erase annotations at the specified position.
-- `input(): void` — Process renderer input.
-- `point(): Point` — Resolve the current pointer position relative to the canvas.
-- `onPointerDown(event: PointerEvent): void` — Handle pointer start.
-- `onPointerMove(event: PointerEvent): void` — Handle pointer movement.
-- `onPointerEnd(event: PointerEvent): void` — Handle pointer release.
-- `onKeyDown(event: KeyboardEvent): void` — Handle keyboard input.
-- `onKeyUp(event: KeyboardEvent): void` — Handle keyboard release.
-- `keyLetter(key: string): void` — Process a letter-key color selection.
-- `requestNewWindow(): void` — Request creation of a new canvas via the main process.
-- `webState(): WebState` — Return the current renderer environment state.
+- `bootstrap(): void` - Initialize the renderer and annotation interface.
+- `wireEvents(): void` - Connect keyboard, pointer, clipboard, and window events.
+- `installToolbar(): void` - Install renderer controls and toolbar actions.
+- `redraw(): void` - Redraw the current annotation state.
+- `clearAll(): void` - Clear the annotation layer and update the renderer.
+- `eraseAt(point: Point): void` - Erase annotations at the specified position.
+- `input(): void` - Process renderer input.
+- `point(): Point` - Resolve the current pointer position relative to the canvas.
+- `onPointerDown(event: PointerEvent): void` - Handle pointer start.
+- `onPointerMove(event: PointerEvent): void` - Handle pointer movement.
+- `onPointerEnd(event: PointerEvent): void` - Handle pointer release.
+- `onKeyDown(event: KeyboardEvent): void` - Handle keyboard input.
+- `onKeyUp(event: KeyboardEvent): void` - Handle keyboard release.
+- `keyLetter(key: string): void` - Process a letter-key color selection.
+- `requestNewWindow(): void` - Request creation of a new canvas via the main process.
+- `webState(): WebState` - Return the current renderer environment state.
 
 **Initialization Flow**
 
@@ -1077,26 +1077,26 @@ constructor(
 )
 ```
 
-- `selectedColor(): Color` — Return the currently selected drawing color.
-- `setColor(color: Color): void` — Change the selected drawing color.
-- `currentMode(): Mode` — Return the current interaction mode.
-- `currentTrigger(): Trigger` — Return the active input trigger.
-- `intentFor(input: Input): Intent` — Resolve raw input into an annotation intent.
-- `drawTrigger(): Trigger` — Return the configured drawing trigger.
-- `eraseTrigger(): Trigger` — Return the configured erasing trigger.
-- `beginStroke(point: Point): void` — Start a new stroke.
-- `extendStroke(point: Point): void` — Add a point to the active stroke.
-- `endGesture(): void` — Finish the active drawing or erasing gesture.
-- `undo(): void` — Undo the latest annotation action.
-- `clear(): void` — Clear the current annotation state.
-- `beginErase(point: Point): void` — Start an erase gesture.
-- `eraseAt(point: Point): void` — Erase annotations at the specified position.
-- `startDrag(object: PastedObject): void` — Start moving a pasted object.
-- `dragTo(point: Point): void` — Move the active pasted object.
-- `isDragging(): boolean` — Check whether an object is currently being moved.
-- `endDrag(): void` — Finish the current object movement.
-- `addPasted(object: PastedObject): void` — Add a pasted object to the annotation.
-- `snapshot(): AnnotationSnapshot` — Return the current annotation state.
+- `selectedColor(): Color` - Return the currently selected drawing color.
+- `setColor(color: Color): void` - Change the selected drawing color.
+- `currentMode(): Mode` - Return the current interaction mode.
+- `currentTrigger(): Trigger` - Return the active input trigger.
+- `intentFor(input: Input): Intent` - Resolve raw input into an annotation intent.
+- `drawTrigger(): Trigger` - Return the configured drawing trigger.
+- `eraseTrigger(): Trigger` - Return the configured erasing trigger.
+- `beginStroke(point: Point): void` - Start a new stroke.
+- `extendStroke(point: Point): void` - Add a point to the active stroke.
+- `endGesture(): void` - Finish the active drawing or erasing gesture.
+- `undo(): void` - Undo the latest annotation action.
+- `clear(): void` - Clear the current annotation state.
+- `beginErase(point: Point): void` - Start an erase gesture.
+- `eraseAt(point: Point): void` - Erase annotations at the specified position.
+- `startDrag(object: PastedObject): void` - Start moving a pasted object.
+- `dragTo(point: Point): void` - Move the active pasted object.
+- `isDragging(): boolean` - Check whether an object is currently being moved.
+- `endDrag(): void` - Finish the current object movement.
+- `addPasted(object: PastedObject): void` - Add a pasted object to the annotation.
+- `snapshot(): AnnotationSnapshot` - Return the current annotation state.
 
 **Interaction Flow**
 
@@ -1106,16 +1106,16 @@ constructor(
 intentFor()
     |
 Intent
-    |— Draw  => Drawing
-    |— Erase => Drawing
-    |— Undo  => Drawing
-    |— Clear => Drawing
+    |- Draw  => Drawing
+    |- Erase => Drawing
+    |- Undo  => Drawing
+    |- Clear => Drawing
     |_ Drag  => PastedObjectStore
 ```
 
 **Data Structures**
 
-_AnnotationSnapshot_ — Represents the current annotation state.
+_AnnotationSnapshot_ - Represents the current annotation state.
 
 - `strokes: Stroke[]`
 - `objects: PastedObject[]`
@@ -1188,22 +1188,22 @@ It owns the stroke collection and provides operations for creating, updating, un
 constructor()
 ```
 
-- `startStroke(point: Point, color: Color): Stroke` — Create and store a new stroke.
-- `addPoint(stroke: Stroke, point: Point): void` — Add a point to an existing stroke.
-- `undo(): void` — Remove the latest stroke.
-- `clear(): void` — Remove all strokes.
-- `eraseAt(point: Point): void` — Remove or update strokes affected by the eraser.
-- `strokes(): Stroke[]` — Return the current strokes.
+- `startStroke(point: Point, color: Color): Stroke` - Create and store a new stroke.
+- `addPoint(stroke: Stroke, point: Point): void` - Add a point to an existing stroke.
+- `undo(): void` - Remove the latest stroke.
+- `clear(): void` - Remove all strokes.
+- `eraseAt(point: Point): void` - Remove or update strokes affected by the eraser.
+- `strokes(): Stroke[]` - Return the current strokes.
 
 **Data Structures**
 
-_Stroke_ — Represents one freehand drawing stroke.
+_Stroke_ - Represents one freehand drawing stroke.
 
-- `points: Point[]` — Points that form the stroke path.
-- `color: Color` — Stroke color.
-- `width: number` — Stroke width.
+- `points: Point[]` - Points that form the stroke path.
+- `color: Color` - Stroke color.
+- `width: number` - Stroke width.
 
-_Point_ — Represents a position on the drawing surface.
+_Point_ - Represents a position on the drawing surface.
 
 - `x: number`
 - `y: number`
@@ -1301,22 +1301,22 @@ It owns the object collection and provides lookup, movement, removal, and cleari
 constructor()
 ```
 
-- `add(object: PastedObject): void` — Add a pasted object to the store.
-- `objectAt(point: Point): PastedObject | null` — Find the topmost object at a position.
-- `eraseAt(point: Point): void` — Remove the object at a position.
-- `move(object: PastedObject, point: Point): void` — Move an object to a new position.
-- `clear(): void` — Remove all stored objects.
-- `objects(): PastedObject[]` — Return the current pasted objects.
+- `add(object: PastedObject): void` - Add a pasted object to the store.
+- `objectAt(point: Point): PastedObject | null` - Find the topmost object at a position.
+- `eraseAt(point: Point): void` - Remove the object at a position.
+- `move(object: PastedObject, point: Point): void` - Move an object to a new position.
+- `clear(): void` - Remove all stored objects.
+- `objects(): PastedObject[]` - Return the current pasted objects.
 
 **Data Structures**
 
-_PastedObject_ — Represents a pasted image or text object.
+_PastedObject_ - Represents a pasted image or text object.
 
-- `id: string` — Unique object identifier.
-- `type: PastedObjectType` — Type of pasted content.
-- `position: Point` — Top-left position of the object.
-- `size: Size` — Rendered object dimensions.
-- `content: string | ImageData` — Object content.
+- `id: string` - Unique object identifier.
+- `type: PastedObjectType` - Type of pasted content.
+- `position: Point` - Top-left position of the object.
+- `size: Size` - Rendered object dimensions.
+- `content: string | ImageData` - Object content.
 
 **Size**
 
@@ -1425,21 +1425,21 @@ constructor(
 )
 ```
 
-- `parse(value: string): Accelerator` — Parse an accelerator definition into an `Accelerator`.
-- `matches(input: KeyboardInput): boolean` — Check whether keyboard input matches the accelerator.
-- `modifierName(): string` — Return the platform-appropriate modifier name.
-- `isModifierKey(): boolean` — Check whether the configured key is itself a modifier.
-- `isActive(): boolean` — Check whether the accelerator has a valid key and modifier combination.
-- `toGnomeBinding(): string` — Convert the accelerator to a GNOME-compatible key binding.
+- `parse(value: string): Accelerator` - Parse an accelerator definition into an `Accelerator`.
+- `matches(input: KeyboardInput): boolean` - Check whether keyboard input matches the accelerator.
+- `modifierName(): string` - Return the platform-appropriate modifier name.
+- `isModifierKey(): boolean` - Check whether the configured key is itself a modifier.
+- `isActive(): boolean` - Check whether the accelerator has a valid key and modifier combination.
+- `toGnomeBinding(): string` - Convert the accelerator to a GNOME-compatible key binding.
 
 **Data Structures**
 
 _Accelerator_
 
-- `key: string` — Primary keyboard key.
-- `modifiers: Modifier[]` — Required modifier keys.
+- `key: string` - Primary keyboard key.
+- `modifiers: Modifier[]` - Required modifier keys.
 
-_Modifier_ — `Control`, `Alt`, `Shift`, `Meta`, `CommandOrControl`
+_Modifier_ - `Control`, `Alt`, `Shift`, `Meta`, `CommandOrControl`
 
 _KeyboardInput_
 
@@ -1496,11 +1496,11 @@ Platform-specific conversion should not change the internal accelerator represen
 
 The renderer uses a separate stateless `Accelerator` utility (`src/shared/Accelerator.ts`):
 
-- `parseAccelerator(value): { mods: Modifiers; key: string }` — Parse into a normalized modifier record and key.
-- `matches(event: KeyboardEvent, accelerator): boolean` — Match a DOM keyboard event against an accelerator string.
-- `modifierName(accelerator): ModifierName | undefined` — Return the primary modifier of an accelerator string.
-- `isModifierKey(event, mod)` / `isActive(event, mod, held)` — Modifier-state helpers.
-- `toGnomeBinding(accelerator): string` — Convert an accelerator string to a GNOME binding.
+- `parseAccelerator(value): { mods: Modifiers; key: string }` - Parse into a normalized modifier record and key.
+- `matches(event: KeyboardEvent, accelerator): boolean` - Match a DOM keyboard event against an accelerator string.
+- `modifierName(accelerator): ModifierName | undefined` - Return the primary modifier of an accelerator string.
+- `isModifierKey(event, mod)` / `isActive(event, mod, held)` - Modifier-state helpers.
+- `toGnomeBinding(accelerator): string` - Convert an accelerator string to a GNOME binding.
 
 **Design Boundary**
 
@@ -1539,11 +1539,11 @@ The internal model is platform-independent. Platform-specific key names are reso
 
 **Values and Meaning**
 
-- `Control` — Control key.
-- `Alt` — Alt key.
-- `Shift` — Shift key.
-- `Meta` — Meta/Windows/Command key.
-- `CommandOrControl` — Control on Windows/Linux and Command on macOS.
+- `Control` - Control key.
+- `Alt` - Alt key.
+- `Shift` - Shift key.
+- `Meta` - Meta/Windows/Command key.
+- `CommandOrControl` - Control on Windows/Linux and Command on macOS.
 
 **Modifier**
 
@@ -1553,14 +1553,14 @@ enum Modifier { Control, Alt, Shift, Meta, CommandOrControl }
 
 **Functions**
 
-- `isModifier(value: string): value is Modifier` — Check whether a value is a supported modifier.
-- `modifierMatches(modifier: Modifier, input: KeyboardInput): boolean` — Check whether the modifier is active in the keyboard input.
-- `isModifierPlatformIndependent(modifier: Modifier): boolean` — Check whether the modifier has the same meaning across supported platforms.
-- `resolveModifier(modifier: Modifier, os: OperatingSystemInformation): ModifierKey` — Resolve the modifier to the platform-specific key.
+- `isModifier(value: string): value is Modifier` - Check whether a value is a supported modifier.
+- `modifierMatches(modifier: Modifier, input: KeyboardInput): boolean` - Check whether the modifier is active in the keyboard input.
+- `isModifierPlatformIndependent(modifier: Modifier): boolean` - Check whether the modifier has the same meaning across supported platforms.
+- `resolveModifier(modifier: Modifier, os: OperatingSystemInformation): ModifierKey` - Resolve the modifier to the platform-specific key.
 
 **Data Structures**
 
-_KeyboardInput_ — Represents the modifier state of a keyboard event.
+_KeyboardInput_ - Represents the modifier state of a keyboard event.
 
 - `key: string`
 - `ctrlKey: boolean`
@@ -1602,12 +1602,12 @@ It converts annotation state into visual output and provides measurement utiliti
 constructor(canvas: HTMLCanvasElement)
 ```
 
-- `resize(): void` — Resize the canvas to match the current rendering area.
-- `render(state: AnnotationSnapshot): void` — Render the complete annotation state.
-- `measureText(text: string): Size` — Measure plain text content.
-- `clearRich(): void` — Clear the current rich-content rendering surface.
-- `removeRich(): void` — Remove the current rich-content element.
-- `measureRich(): Size` — Measure the current rich-content element.
+- `resize(): void` - Resize the canvas to match the current rendering area.
+- `render(state: AnnotationSnapshot): void` - Render the complete annotation state.
+- `measureText(text: string): Size` - Measure plain text content.
+- `clearRich(): void` - Clear the current rich-content rendering surface.
+- `removeRich(): void` - Remove the current rich-content element.
+- `measureRich(): Size` - Measure the current rich-content element.
 
 **Rendering Flow**
 
@@ -1625,10 +1625,10 @@ AnnotationSnapshot
 
 The renderer handles:
 
-- **Strokes** — Draw stroke paths using their color and width.
-- **Text objects** — Render text at the object's position and size.
-- **Image objects** — Render pasted images at their position and size.
-- **Canvas state** — Resize and clear the rendering surface when required.
+- **Strokes** - Draw stroke paths using their color and width.
+- **Text objects** - Render text at the object's position and size.
+- **Image objects** - Render pasted images at their position and size.
+- **Canvas state** - Resize and clear the rendering surface when required.
 
 **Measurement**
 
@@ -1706,7 +1706,7 @@ constructor(
 )
 ```
 
-- `paste(at: Point, plain: boolean): Promise<void>` — Read and process the current clipboard content at the given point; `plain` forces plain-text paste.
+- `paste(at: Point, plain: boolean): Promise<void>` - Read and process the current clipboard content at the given point; `plain` forces plain-text paste.
 
 **Paste Flow**
 
@@ -1756,8 +1756,8 @@ _ClipboardPort_
 
 Provides the clipboard data required by the service.
 
-- `readBrowser(): Promise<ClipboardItemLike[]>` — Read items from the browser clipboard API when available.
-- `readNative(): Promise<{ image: string; text: string }>` — Read clipboard content through the Electron `clipboard-content` IPC channel.
+- `readBrowser(): Promise<ClipboardItemLike[]>` - Read items from the browser clipboard API when available.
+- `readNative(): Promise<{ image: string; text: string }>` - Read clipboard content through the Electron `clipboard-content` IPC channel.
 
 ```text
 ClipboardPort
@@ -1844,7 +1844,7 @@ It removes unsafe or unsupported content while preserving the formatting support
 
 _No dependencies are required_
 
-- `sanitize(html: string): string` — Remove unsafe and unsupported HTML content and return sanitized HTML.
+- `sanitize(html: string): string` - Remove unsafe and unsupported HTML content and return sanitized HTML.
 
 **Sanitization Rules**
 
@@ -1880,8 +1880,8 @@ Displays short-lived feedback messages to the user.
 constructor(container: HTMLElement)
 ```
 
-- `show(message: string): void` — Display a temporary feedback message.
-- `hide(): void` — Remove the currently displayed message.
+- `show(message: string): void` - Display a temporary feedback message.
+- `hide(): void` - Remove the currently displayed message.
 
 **Behavior**
 
@@ -1907,14 +1907,14 @@ _ToastState_
 - `visible: boolean`
 - `timer: Timer | null`
 
-*_Error Handling_
+\*_Error Handling_
 
 - Ignore empty messages.
 - Safely handle a missing or unavailable container.
 - Clear an existing timer before displaying a new message.
 - Do not allow multiple timers to remove a newer message.
 
-*_Design Boundary_
+\*_Design Boundary_
 
 `Toast` owns only the display lifecycle of temporary feedback.
 
@@ -1949,7 +1949,7 @@ constructor(
 )
 ```
 
-- `install(): void` — Create and register the supported toolbar controls.
+- `install(): void` - Create and register the supported toolbar controls.
 
 **Data Structures**
 
@@ -1968,7 +1968,7 @@ The action set can be extended as additional toolbar controls are introduced.
 
 The message handler receives feedback messages that should be displayed to the user.
 
-*_Installation Flow_
+\*_Installation Flow_
 
 ```text
 Toolbar
@@ -2043,10 +2043,10 @@ It does not:
 Provides structured console and rotating file logging built on `loggest`.
 
 - `FileSystemLogger` writing to `<logs>/[app_name].log`.
-- Context — Every record carries meta data and a per-launch `loggerId`.
-- Format — Records are stamped with ISO time and stringified sink values.
-- Modes — `production`, `development`, `testing`, and `test` are detected.
-- Quiet — When `NODE_ENV === 'test'` (Bun) the logger filters output out entirely.
+- Context - Every record carries meta data and a per-launch `loggerId`.
+- Format - Records are stamped with ISO time and stringified sink values.
+- Modes - `production`, `development`, `testing`, and `test` are detected.
+- Quiet - When `NODE_ENV === 'test'` (Bun) the logger filters output out entirely.
 
 **Design Boundary**
 

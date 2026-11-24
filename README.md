@@ -45,21 +45,21 @@ Open Screen Annotate once and leave it running. F8 does the rest.
 
 ## Supported Platforms
 
-- **Web:** — Drawing, erase, colors, undo, clear, paste. No layer over the screen, no global keys.
-- **Mobile:** — Same as Web, plus install and a touch toolbar. No global keys.
-- **Linux:** — Full app. On Wayland, F8 needs GNOME or gsettings, so use the deb.
-- **macOS:** — Full app, dmg and zip. The toggle helper joins login items. x64 only.
-- **Windows:** — Full app, installer and portable exe. F8 binds directly.
+- **Web:** - Drawing, erase, colors, undo, clear, paste. No layer over the screen, no global keys.
+- **Mobile:** - Same as Web, plus install and a touch toolbar. No global keys.
+- **Linux:** - Full app. On Wayland, F8 needs GNOME or gsettings, so use the deb.
+- **macOS:** - Full app, dmg and zip. The toggle helper joins login items. x64 only.
+- **Windows:** - Full app, installer and portable exe. F8 binds directly.
 
 ## Installation
 
 ### Prerequisites
 
-- **Web:** — Any current browser with Canvas 2D and Pointer Events. Nothing to install.
-- **Mobile:** — Mobile browsers show an install prompt. On iOS use Share, then Add to Home Screen. No global keys in a browser.
-- **Linux:** — A desktop on X11 or Wayland. On Wayland the F8 binding needs GNOME or a desktop with gsettings. The .deb installs to /opt/Screen Annotate and links /usr/bin/annotate.
-- **macOS:** — A macOS release the bundled Electron supports. The toggle helper is added to the login items on first run.
-- **Windows:** — Windows 10 or newer.
+- **Web:** - Any current browser with Canvas 2D and Pointer Events. Nothing to install.
+- **Mobile:** - Mobile browsers show an install prompt. On iOS use Share, then Add to Home Screen. No global keys in a browser.
+- **Linux:** - A desktop on X11 or Wayland. On Wayland the F8 binding needs GNOME or a desktop with gsettings. The .deb installs to /opt/Screen Annotate and links /usr/bin/annotate.
+- **macOS:** - A macOS release the bundled Electron supports. The toggle helper is added to the login items on first run.
+- **Windows:** - Windows 10 or newer.
 
 ### Downloads
 
@@ -73,7 +73,7 @@ Open Screen Annotate once and leave it running. F8 does the rest.
 
 Linux is x64, macOS is x64 (Intel), Windows is x64. Other builds live on the [releases page](https://github.com/saeedhosan/annotate/releases).
 
-Pushing a v* tag builds all three desktop installers and publishes them. The web preview ships from main.
+Pushing a v\* tag builds all three desktop installers and publishes them. The web preview ships from main.
 
 ### Installation Guide
 
