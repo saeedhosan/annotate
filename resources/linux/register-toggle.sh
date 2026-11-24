@@ -56,9 +56,15 @@ command -v gsettings >/dev/null 2>&1 || { echo "gsettings not available; skippin
 
 BINDING="${2:-F8}"
 case "$BINDING" in
-    F[1-9]|F1[0-9]|F2[0-4]|'<Primary>'*|'<Alt>'*|'<Super>'*|'<Shift>'*|'<Control>'*) ;;
-    *)
+    *[!A-Za-z0-9\<\>_-]*|'')
         echo "invalid binding key: $BINDING" >&2
+        exit 1
+        ;;
+esac
+case "$BINDING" in
+    F[1-9]|F1[0-9]|F2[0-4]|*'<Primary>'*|*'<Alt>'*|*'<Super>'*|*'<Shift>'*|*'<Control>'*|*'<Mod'*|*'<Meta>'*) ;;
+    *)
+        echo "unsupported binding key: $BINDING" >&2
         exit 1
         ;;
 esac
@@ -81,7 +87,8 @@ gsettings set "$SCHEMA.custom-keybinding:$KEYPATH" binding "$BINDING" 2>/dev/nul
 LIST="$(gsettings get "$SCHEMA" custom-keybindings 2>/dev/null || true)"
 LIST="${LIST#@as }"
 if [[ "$LIST" != *"'$KEYPATH'"* ]]; then
-    python3 - "$LIST" "$KEYPATH" <<'PY'
+    if command -v python3 >/dev/null 2>&1; then
+        python3 - "$LIST" "$KEYPATH" <<'PY'
 import ast
 import subprocess
 import sys
@@ -111,6 +118,12 @@ subprocess.run(
     stderr=subprocess.DEVNULL,
 )
 PY
+    else
+        case "$LIST" in
+          "[]"|"") gsettings set "$SCHEMA" custom-keybindings "['$KEYPATH']" 2>/dev/null || true ;;
+          *) gsettings set "$SCHEMA" custom-keybindings "$(printf '%s' "$LIST" | sed "s|]|, '$KEYPATH']|")" 2>/dev/null || true ;;
+        esac
+    fi
 fi
 
 gsettings get "$SCHEMA" custom-keybindings 2>/dev/null | grep -q "$ID" || echo "registration did not take effect" >&2

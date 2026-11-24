@@ -13,10 +13,26 @@ if [ ! -f "$PKG_FILE" ]; then
     exit 1
 fi
 
-EXECUTABLE_NAME=$(jq -r '.build.executableName' "$PKG_FILE")
+EXECUTABLE_NAME=""
+if command -v jq >/dev/null 2>&1; then
+    EXECUTABLE_NAME=$(jq -r '.build.executableName // empty' "$PKG_FILE")
+elif command -v python3 >/dev/null 2>&1; then
+    EXECUTABLE_NAME=$(python3 - "$PKG_FILE" <<'PY'
+import json, sys
+with open(sys.argv[1], encoding="utf-8") as f:
+    data = json.load(f)
+print(data.get("build", {}).get("executableName", ""))
+PY
+)
+fi
+
+if [ -z "$EXECUTABLE_NAME" ] && [ -x "$INSTALLED/annotate" ]; then
+    EXECUTABLE_NAME="annotate"
+fi
+
 case "$EXECUTABLE_NAME" in
     ''|.*|*[!A-Za-z0-9._-]*|.|..)
-        echo "invalid executableName in $PKG_FILE" >&2
+        echo "invalid or unreadable executableName in $PKG_FILE" >&2
         exit 1
         ;;
 esac
