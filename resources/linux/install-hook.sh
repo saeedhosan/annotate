@@ -13,21 +13,50 @@ if [ ! -f "$PKG_FILE" ]; then
     exit 1
 fi
 
-PRODUCT_NAME=$(jq -r '.build.productName' "$PKG_FILE")
-EXECUTABLE_NAME=$(jq -r '.build.executableName' "$PKG_FILE")
+EXECUTABLE_NAME=""
+if command -v jq >/dev/null 2>&1; then
+    EXECUTABLE_NAME=$(jq -r '.build.executableName // empty' "$PKG_FILE")
+elif command -v python3 >/dev/null 2>&1; then
+    EXECUTABLE_NAME=$(python3 - "$PKG_FILE" <<'PY'
+import json, sys
+with open(sys.argv[1], encoding="utf-8") as f:
+    data = json.load(f)
+print(data.get("build", {}).get("executableName", ""))
+PY
+)
+fi
+
+if [ -z "$EXECUTABLE_NAME" ] && [ -x "$INSTALLED/annotate" ]; then
+    EXECUTABLE_NAME="annotate"
+fi
+
+case "$EXECUTABLE_NAME" in
+    ''|.*|*[!A-Za-z0-9._-]*|.|..)
+        echo "invalid or unreadable executableName in $PKG_FILE" >&2
+        exit 1
+        ;;
+esac
+
 BIN_PATH="$INSTALLED/$EXECUTABLE_NAME"
 SYMLINK_PATH="/usr/bin/$EXECUTABLE_NAME"
 
 [ -x "$BIN_PATH" ] || exit 0
+case "$SYMLINK_PATH" in
+    /usr/bin/*) ;;
+    *)
+        echo "refusing to create symlink outside /usr/bin: $SYMLINK_PATH" >&2
+        exit 1
+        ;;
+esac
 ln -sf "$BIN_PATH" "$SYMLINK_PATH"
 
 REG="$INSTALLED/resources/register-toggle.sh"
 [ -x "$REG" ] || exit 0
 
 USER_NAME="${SUDO_USER:-${LOGNAME:-}}"
-
 if [ -z "$USER_NAME" ] || [ "$USER_NAME" = root ]; then
-  USER_NAME="$(ls /home 2>/dev/null | head -1 || true)"
+    echo "no non-root desktop user detected; skipping shortcut registration" >&2
+    exit 0
 fi
 id -u "$USER_NAME" >/dev/null 2>&1 || exit 0
 
