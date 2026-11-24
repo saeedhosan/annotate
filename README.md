@@ -246,6 +246,6 @@ annotate
 
 See [CONTRIBUTING.md](CONTRIBUTING.md). It covers setup, the checks to run, and the three code rules worth knowing.
 
-## License
+### License
 
-MIT. See [LICENSE](LICENSE).
+**Annotate** was created by **[Saeed Hosan](https://www.linkedin.com/in/saeedhosan)** under the **[MIT license](https://opensource.org/licenses/MIT)**.
