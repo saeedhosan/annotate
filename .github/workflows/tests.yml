@@ -15,7 +15,7 @@ jobs:
     check:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v7
             - uses: oven-sh/setup-bun@v2
             - run: bun install --frozen-lockfile
             - run: bun run test:tsc
@@ -24,7 +24,7 @@ jobs:
     unit:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v7
             - uses: oven-sh/setup-bun@v2
             - run: bun install --frozen-lockfile
             - run: bun run test:unit
@@ -32,7 +32,7 @@ jobs:
     e2e:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v7
             - uses: oven-sh/setup-bun@v2
             - run: bun install --frozen-lockfile
             - run: xvfb-run --auto-servernum bun run test:e2e
